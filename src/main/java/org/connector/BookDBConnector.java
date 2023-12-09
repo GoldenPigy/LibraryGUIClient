@@ -40,6 +40,7 @@ public class BookDBConnector
                 String[] singleBookInfo = {String.valueOf(bookNum), bookName, bookWriter, bookPublisher};
                 bookInfo[i] = singleBookInfo;
             }
+            System.out.println(bookInfo[1][2]);
             return bookInfo;
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,6 +88,7 @@ public class BookDBConnector
         {
             return null;
         }
+        System.out.println(queryString);
         queryString = "/memberBookBorrowList?id=" + userId;
         result = dbConnector.connectDB(queryString);
         ObjectMapper objectMapper = new ObjectMapper();

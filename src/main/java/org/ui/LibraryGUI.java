@@ -321,9 +321,9 @@ public class LibraryGUI extends JFrame {
         JPanel checkoutPanel = new JPanel(new BorderLayout());
         JButton cancelButton = new JButton("취소");
 
-        /*NonEditableModel model  = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
+        NonEditableModel model  = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
         Object[][] data = connector.borrowBookListRequest();
-        for (Object[] row : data) { model.addRow(row);}*/
+        for (Object[] row : data) { model.addRow(row);}
 
         JTable table = setTable(connector.borrowBookListRequest());
 
