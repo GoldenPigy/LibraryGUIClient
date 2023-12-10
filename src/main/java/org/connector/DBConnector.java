@@ -12,7 +12,7 @@ public class DBConnector
     {
         try
         {
-            String urlString = "http://localhost:8080" + queryString;
+            String urlString = "http://192.168.1.187:8080" + queryString;
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");

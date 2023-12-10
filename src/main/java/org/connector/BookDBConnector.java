@@ -3,6 +3,12 @@ package org.connector;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 public class BookDBConnector
 {
     DBConnector dbConnector = new DBConnector();
@@ -24,8 +30,10 @@ public class BookDBConnector
         userId = id;
     }
 
-    public Object[][] searchBookRequest(String name, String writer, String publisher) {
-        queryString = "/search?name=" + name + "&writer=" + writer + "&publisher=" + publisher;
+    public Object[][] searchBookRequest(String name, String writer, String publisher) throws UnsupportedEncodingException {
+        queryString = "/search?name=" + URLEncoder.encode(name, StandardCharsets.UTF_8.toString()) +
+                "&writer=" + URLEncoder.encode(writer, StandardCharsets.UTF_8.toString()) +
+                "&publisher=" + URLEncoder.encode(publisher, StandardCharsets.UTF_8.toString());
         result = dbConnector.connectDB(queryString);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -33,6 +41,7 @@ public class BookDBConnector
             bookInfo = new String[rootNode.size()][4];
             for (int i = 0; i < rootNode.size(); i++) {
                 JsonNode singleNode = rootNode.get(i);
+
                 bookNum = singleNode.path("num").asInt();
                 bookName = singleNode.path("name").asText();
                 bookWriter = singleNode.path("writer").asText();

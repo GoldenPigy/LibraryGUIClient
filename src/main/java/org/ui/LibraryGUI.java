@@ -3,6 +3,7 @@ package org.ui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -236,7 +237,12 @@ public class LibraryGUI extends JFrame {
             String writer = writerSearchField.getText().trim();
             String publisher = publisherSearchField.getText().trim();
 
-            Object[][] data1 = connector.searchBookRequest(book, writer, publisher);
+            Object[][] data1 = new Object[0][];
+            try {
+                data1 = connector.searchBookRequest(book, writer, publisher);
+            } catch (UnsupportedEncodingException ex) {
+                throw new RuntimeException(ex);
+            }
             setTable(data1, table);
         });
 

@@ -1,0 +1,41 @@
+
+a	java:S112ô"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ
+a	java:S112˜"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ
+h	java:S112¼"FDefine and throw a dedicated exception instead of using a generic one.(¼ÿ¾¹ÿÿÿÿÿ8®½±žÅ1
+f
+java:S1192P"KDefine a constant instead of duplicating this literal "Main Menu" 11 times.(ýª§¦ýÿÿÿÿ
+a
+java:S1192t"FDefine a constant instead of duplicating this literal "Arial" 3 times.(èþ…—ùÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(ô‚°™ûÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(©–þ…øÿÿÿÿ
+M
+java:S1948"+Make "connector" transient or serializable.(µÙ¬Þøÿÿÿÿ8ü½±žÅ1
+N
+java:S1948"1Make "memberConnector" transient or serializable.(™¬Ù°8ü½±žÅ1
+d
+java:S3252 "IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Õû»öþÿÿÿÿ
+C
+java:S1602“",Remove useless curly braces around statement(çúöÑ
+C
+java:S1602Å",Remove useless curly braces around statement(çúöÑ
+C
+java:S1602ù",Remove useless curly braces around statement(çúöÑ
+C
+java:S1602",Remove useless curly braces around statement(çúöÑ
+C
+java:S1602Á",Remove useless curly braces around statement(çúöÑ
+R	java:S125Ë"<This block of commented-out lines of code should be removed.(ÜõÚ“
+C
+java:S1602Û",Remove useless curly braces around statement(çúöÑ
+C
+java:S1602“",Remove useless curly braces around statement(çúöÑ
+C
+java:S1602©",Remove useless curly braces around statement(çúöÑ
+E
+java:S1940×")Use the opposite operator ("!=") instead.(¿ÒÚ¸ûÿÿÿÿ
+E
+java:S1940à")Use the opposite operator ("!=") instead.(¿ÒÚ¸ûÿÿÿÿ
+K
+java:S1068"0Remove this unused "screenHeight" private field.(©–þ…øÿÿÿÿ
