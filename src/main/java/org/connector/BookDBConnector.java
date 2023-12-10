@@ -15,7 +15,7 @@ public class BookDBConnector
     String[][] bookInfo;
 
     //임시 아이디. 나중에 null로 처리
-    private static String userId = "anyID";
+    private static String userId = null;
 
     public static boolean isLoggedIn() {return !(userId == null);}
 
