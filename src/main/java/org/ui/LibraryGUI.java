@@ -13,6 +13,8 @@ public class LibraryGUI extends JFrame {
     private MemberDBConnector memberConnector;
     private CardLayout cardLayout;
     private JPanel cardPanel;
+    private JTable borrowBookTable;
+    private NonEditableModel borrowBookModel;
     private final int screenWidth = 1200;
     private final int screenHeight = 800;
 
@@ -95,7 +97,7 @@ public class LibraryGUI extends JFrame {
         //로그인이 필요한 기능
         addLoginButton(borrowButton, "Borrow");
         addLoginButton(returnButton, "Return");
-        addLoginButton(checkoutButton, "CheckOut");
+        addCheckoutButton(checkoutButton,"CheckOut");
         addLoginButton(requestButton, "Request");
 
         add(cardPanel);
@@ -209,8 +211,7 @@ public class LibraryGUI extends JFrame {
         JButton searchButton = new JButton("검색");
         JButton cancelButton = new JButton("취소");
 
-        Object[][] data = connector.searchBookRequest("", "", "");
-        JTable table = setTable(data);
+        JTable table = new JTable();
 
         JScrollPane scrollPane = new JScrollPane(table);
 
@@ -325,9 +326,9 @@ public class LibraryGUI extends JFrame {
         Object[][] data = connector.borrowBookListRequest();
         for (Object[] row : data) { model.addRow(row);}*/
 
-        JTable table = setTable(connector.borrowBookListRequest());
+        borrowBookTable = setTable(connector.borrowBookListRequest());
 
-        JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(borrowBookTable);
 
         JPanel topPanel = new JPanel();
         topPanel.add(cancelButton);
@@ -434,6 +435,20 @@ public class LibraryGUI extends JFrame {
         });
     }
 
+    private void addCheckoutButton(JButton button, String panelName) {
+        button.addActionListener(e -> {
+            if (BookDBConnector.isLoggedIn()) {
+                borrowBookModel = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
+                for (Object[] row : connector.borrowBookListRequest()) { borrowBookModel.addRow(row); }
+                borrowBookTable.setModel(borrowBookModel);
+                cardLayout.show(cardPanel, panelName);
+            } else {
+                JOptionPane.showMessageDialog(this, "Login Please");
+                cardLayout.show(cardPanel, "Main Menu");
+            }
+        });
+    }
+
     static class NonEditableModel extends DefaultTableModel {
         public NonEditableModel(Object[] columnNames, int rowCount) {
             super(columnNames, rowCount);
@@ -446,16 +461,13 @@ public class LibraryGUI extends JFrame {
     }
 
     public JTable setTable(Object[][] data){
-        if (data == null) {
-            // null인 경우 예외 처리
-            return null;
-        } else {
-            JTable table = new JTable();
+        JTable table = new JTable();
+        if (!(data == null)) {
             NonEditableModel model  = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
             for (Object[] row : data) { model.addRow(row);}
             table.setModel(model);
-            return table;
         }
+        return table;
     }
 
     public void setTable(Object[][] data, JTable table) {
